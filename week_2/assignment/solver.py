@@ -2,19 +2,8 @@
 # -*- coding: utf-8 -*-
 from typing import List
 from item import Item
-from dynamic_programming import dynamic_programming_naive
-
-
-def greedy(items: List, capacity: int):
-    value = 0
-    weight = 0
-    taken = [0] * len(items)
-    for item in items:
-        if weight + item.weight <= capacity:
-            taken[item.index] = 1
-            value += item.value
-            weight += item.weight
-    return value, taken
+from greedy import greedy, greedy_optimised
+from dynamic_programming import dynamic_programming_naive, dynamic_programming_memoization_optimised
 
 
 def solve_it(input_data):
@@ -41,12 +30,21 @@ def solve_it(input_data):
     # a trivial algorithm for filling the knapsack
     # it takes items in-order until the knapsack is full
 
-    # value, taken = greedy(items, capacity)
-    value, taken = dynamic_programming_naive(items=items, capacity=capacity)
+    solvers = {
+        30: dynamic_programming_memoization_optimised,
+        50: dynamic_programming_memoization_optimised,
+        200: dynamic_programming_memoization_optimised,
+        400: greedy_optimised,
+        1000: greedy_optimised,
+        10000: greedy_optimised
+    }
+    value, taken = solvers[item_count](items, capacity)
+    # value, taken = dynamic_programming_naive(items=items, capacity=capacity)
+    # value, taken = dynamic_programming_memoization_optimised(items=items, capacity=capacity)
     # value, taken = branch_and_bound(items=items, capacity=capacity, value_max=0, value_acc=0, items_selected=[])
 
     # prepare the solution in the specified output format
-    output_data = str(value) + ' ' + str(1) + '\n'
+    output_data = str(value) + ' ' + str(0) + '\n'
     output_data += ' '.join(map(str, taken))
     return output_data
 
@@ -54,9 +52,8 @@ def solve_it(input_data):
 if __name__ == '__main__':
     import sys
 
-    sys.setrecursionlimit(2000)
-
     if len(sys.argv) > 1:
+        print(sys.argv)
         file_location = sys.argv[1].strip()
         with open(file_location, 'r') as input_data_file:
             input_data = input_data_file.read()
