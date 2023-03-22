@@ -1,5 +1,14 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
+from constraint_programming import constraint_programming
+
+
+def trivial_solution(node_count:int):
+    """
+    build a trivial solution.
+    every node has its own color.
+    """
+    return node_count, range(0, node_count)
 
 
 def solve_it(input_data):
@@ -18,13 +27,12 @@ def solve_it(input_data):
         parts = line.split()
         edges.append((int(parts[0]), int(parts[1])))
 
-    # build a trivial solution
-    # every node has its own color
-    solution = range(0, node_count)
+    # colours_cnt, colours_assignment = trivial_solution(node_count)
+    colours_cnt, colours_assignment = constraint_programming(node_count, edges)
 
     # prepare the solution in the specified output format
-    output_data = str(node_count) + ' ' + str(0) + '\n'
-    output_data += ' '.join(map(str, solution))
+    output_data = str(colours_cnt) + ' ' + str(0) + '\n'
+    output_data += ' '.join(map(str, colours_assignment))
 
     return output_data
 
