@@ -1,6 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
-from constraint_programming import constraint_programming
+import constraint_programming as cp
+import linear_programming as lp
 
 
 def trivial_solution(node_count:int):
@@ -28,7 +29,8 @@ def solve_it(input_data):
         edges.append((int(parts[0]), int(parts[1])))
 
     # colours_cnt, colours_assignment = trivial_solution(node_count)
-    colours_cnt, colours_assignment = constraint_programming(node_count, edges)
+    colours_cnt, colours_assignment = cp.solve(node_count, edges)
+    # colours_cnt, colours_assignment = lp.solve(node_count, edges)
 
     # prepare the solution in the specified output format
     output_data = str(colours_cnt) + ' ' + str(0) + '\n'
