@@ -4,6 +4,7 @@ from typing import List
 from item import Item
 from greedy import greedy, greedy_optimised
 from dynamic_programming import dynamic_programming_naive, dynamic_programming_memoization_optimised
+import mip_ortools as mo
 
 
 def solve_it(input_data):
@@ -27,18 +28,19 @@ def solve_it(input_data):
         parts = line.split()
         items.append(Item(i - 1, int(parts[0]), int(parts[1])))
 
-    # a trivial algorithm for filling the knapsack
-    # it takes items in-order until the knapsack is full
+    # # fix solver
+    # solvers = {
+    #     30: dynamic_programming_memoization_optimised,
+    #     50: dynamic_programming_memoization_optimised,
+    #     200: dynamic_programming_memoization_optimised,
+    #     400: greedy_optimised,
+    #     1000: greedy_optimised,
+    #     10000: greedy_optimised
+    # }
+    #
+    # value, taken = solvers[item_count](items, capacity)
 
-    solvers = {
-        30: dynamic_programming_memoization_optimised,
-        50: dynamic_programming_memoization_optimised,
-        200: dynamic_programming_memoization_optimised,
-        400: greedy_optimised,
-        1000: greedy_optimised,
-        10000: greedy_optimised
-    }
-    value, taken = solvers[item_count](items, capacity)
+    value, taken = mo.solve(items=items, capacity=capacity)
     # value, taken = dynamic_programming_naive(items=items, capacity=capacity)
     # value, taken = dynamic_programming_memoization_optimised(items=items, capacity=capacity)
     # value, taken = branch_and_bound(items=items, capacity=capacity, value_max=0, value_acc=0, items_selected=[])
