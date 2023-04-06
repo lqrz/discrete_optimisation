@@ -1,14 +1,11 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
-
-import math
-from collections import namedtuple
-
-Point = namedtuple("Point", ['x', 'y'])
-
-
-def length(point1, point2):
-    return math.sqrt((point1.x - point2.x) ** 2 + (point1.y - point2.y) ** 2)
+from utils import Point, length
+import mip_ortools as mo
+import mip_pulp as plp
+import local_search as ls
+import greedy as gd
+import routing_ortools as ro
 
 
 def solve_it(input_data):
@@ -27,7 +24,14 @@ def solve_it(input_data):
 
     # build a trivial solution
     # visit the nodes in the order they appear in the file
-    solution = range(0, node_count)
+    # solution = range(0, node_count)
+    # solution = mo.solve(points=points)
+    # solution = plp.solve(points=points)
+    # solution = gd.solve(points=points)
+    # solution = ls.solve(points=points)
+    # solution = ro.solve(points=points)
+
+    solution = list(map(int, open(f"solutions/{node_count}").read().split(" ")))
 
     # calculate the length of the tour
     obj = length(points[solution[-1]], points[solution[0]])
