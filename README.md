@@ -1,10 +1,14 @@
 # Dicrete optimisation
+![](https://img.shields.io/badge/version-v1.0.0-brightgreen.svg)
+[![Python 3.9](https://img.shields.io/badge/python-3.9-brightgreen.svg)](https://www.python.org/downloads/release/python-3/)
+
+A collection of algorithms, experiments and insights into discrete optimisation problems (integer programming, combinatorial optimisation, heuristics).
 
 This repository combines an overview of the [**Discrete Optimization**](https://www.coursera.org/learn/discrete-optimization) course offered on Coursera by Georgia Institute of Technology. It serves both as a course reference and a practical toolkit.
 
 ---
 
-##  Content
+## 🧮 Content
 
 **Discrete Optimization** includes fundamental concepts and practical methods in combinatorial optimization.
 
@@ -18,6 +22,6 @@ This repository combines an overview of the [**Discrete Optimization**](https://
 
 ---
 
-##  Solutions
+## 📦 Solvers & Tools
 - [Google OR-Tools](https://developers.google.com/optimization)
-- Custom implementation
+- Custom implementations
