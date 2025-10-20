@@ -1,6 +1,6 @@
 # Dicrete optimisation
 
-This repository combines an overview of the **Discrete Optimization** course offered on Coursera (University of Melbourne) with working Python implementations of the course assignments. It serves both as a course reference and a practical toolkit.
+This repository combines an overview of the [**Discrete Optimization**](https://www.coursera.org/learn/discrete-optimization) course offered on Coursera by Georgia Institute of Technology. It serves both as a course reference and a practical toolkit.
 
 ---
 
